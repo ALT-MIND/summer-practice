@@ -30,3 +30,41 @@ void print_board(WINDOW * win, int _row, int _col){
         }
     }
 }
+
+void move_right(WINDOW * win, int cur_y, int * cur_x){
+
+    mvwaddstr(win, cur_y, *cur_x, " ");
+    *cur_x += 4;
+    mvwaddstr(win, cur_y, *cur_x, "●");
+    // wmove(win, cur_y, * cur_x);
+    wrefresh(win);
+
+}
+
+void move_left(WINDOW * win, int cur_y, int * cur_x){
+
+    mvwaddstr(win, cur_y, *cur_x, " ");
+    *cur_x -= 4;
+    mvwaddstr(win, cur_y, *cur_x, "●");
+    wrefresh(win);
+
+}
+
+void move_up(WINDOW * win, int * cur_y, int cur_x){
+
+    mvwaddstr(win, * cur_y, cur_x, " ");
+    *cur_y -= 2;
+    mvwaddstr(win, * cur_y, cur_x, "●");
+    wrefresh(win);
+
+}
+
+void move_down(WINDOW * win, int * cur_y, int cur_x){
+
+     mvwaddstr(win, * cur_y, cur_x, " ");
+    *cur_y += 2;
+    mvwaddstr(win, * cur_y, cur_x, "●");
+    wmove(win, * cur_y, cur_x);
+    wrefresh(win);
+
+}
