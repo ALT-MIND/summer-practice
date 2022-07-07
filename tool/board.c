@@ -31,40 +31,50 @@ void print_board(WINDOW * win, int _row, int _col){
     }
 }
 
-void move_right(WINDOW * win, int cur_y, int * cur_x){
+void move_right(WINDOW * win, int cur_y, int * cur_x, char* update){
 
-    mvwaddstr(win, cur_y, *cur_x, " ");
+    if (* update == 'y') mvwaddstr(win, cur_y, *cur_x, " ");
+    else *update = 'y';
     *cur_x += 4;
     mvwaddstr(win, cur_y, *cur_x, "●");
-    // wmove(win, cur_y, * cur_x);
     wrefresh(win);
 
 }
 
-void move_left(WINDOW * win, int cur_y, int * cur_x){
+void move_left(WINDOW * win, int cur_y, int * cur_x, char * update){
 
-    mvwaddstr(win, cur_y, *cur_x, " ");
+    if (* update == 'y') mvwaddstr(win, cur_y, *cur_x, " ");
+    else *update = 'y';
     *cur_x -= 4;
     mvwaddstr(win, cur_y, *cur_x, "●");
     wrefresh(win);
 
 }
 
-void move_up(WINDOW * win, int * cur_y, int cur_x){
+void move_up(WINDOW * win, int * cur_y, int cur_x, char * update){
 
-    mvwaddstr(win, * cur_y, cur_x, " ");
+    if (* update == 'y') mvwaddstr(win, * cur_y, cur_x, " ");
+    else *update = 'y';
     *cur_y -= 2;
     mvwaddstr(win, * cur_y, cur_x, "●");
     wrefresh(win);
 
 }
 
-void move_down(WINDOW * win, int * cur_y, int cur_x){
+void move_down(WINDOW * win, int * cur_y, int cur_x, char * update){
 
-     mvwaddstr(win, * cur_y, cur_x, " ");
+    if (* update == 'y') mvwaddstr(win, * cur_y, cur_x, " ");
+    else *update = 'y';
     *cur_y += 2;
     mvwaddstr(win, * cur_y, cur_x, "●");
     wmove(win, * cur_y, cur_x);
     wrefresh(win);
 
+}
+
+int cell_is_empty(int board[], int width, int row, int col){
+
+    if (board[width * row + col]) return 1;
+    else return 0;
+        
 }
