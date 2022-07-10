@@ -10,9 +10,9 @@ int find_patch(int board[], pos start, pos stop, int row, int col){
     cell board_clone[row][col];
     Queue * queue = create_queue(row * col);
     enqueue(queue, start);
-        board_clone[start.x][start.y].visited = 'y';
-        board_clone[start.x][start.y].prev_step_cell_pos.y = -1;
-        board_clone[start.x][start.y].prev_step_cell_pos.x = -1;
+        board_clone[start.y][start.x].visited = 'y';
+        board_clone[start.y][start.x].prev_step_cell_pos.y = -1;
+        board_clone[start.y][start.x].prev_step_cell_pos.x = -1;
         pos temp;
     for(;;){
         current = front(queue);
