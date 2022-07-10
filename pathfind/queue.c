@@ -6,7 +6,7 @@ Queue * create_queue(unsigned capacity){
     queue->capacity = capacity;
     queue->front = queue->rear = -1;
     queue->size = 0;
-    queue->array = (int*)malloc(queue->capacity * sizeof(int));
+    queue->array = (pos*)malloc(queue->capacity * sizeof(pos));
     return queue;
 
 }
@@ -19,9 +19,9 @@ int is_empty(Queue *queue){
     return (queue->size == 0);
 }
 
-int enqueue(Queue * queue, int item){
+int enqueue(Queue * queue, pos item){
     if (is_full(queue))
-        return -1;
+        return 0;
     if (queue->front == -1) queue->front = 0;
     queue->rear++;
     queue->size++;
@@ -29,10 +29,14 @@ int enqueue(Queue * queue, int item){
     return 1;
 }
 
-int dequeue(Queue *queue){
-    if (is_empty(queue))
-        return -1;
-    int t = queue->array[queue->front];
+pos dequeue(Queue *queue){
+    pos t;
+    if (is_empty(queue)){
+        t.x = -2;
+        t.y = -2;
+        return t;
+    }
+    t = queue->array[queue->front];
     if (queue->front + 1 > queue->rear){
         queue->front = queue->rear = -1;
         queue->size = 0;
@@ -42,5 +46,16 @@ int dequeue(Queue *queue){
         queue->size--;
     }
     return t;
+}
+
+pos front(Queue * queue){
+    pos t;
+    if (is_empty(queue)){
+        t.x = -2;
+        t.y = -2;
+        return t;
+    }
+    return queue->array[queue->front];
+ 
 }
  
